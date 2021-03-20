@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Post = require('./models/post');
 const path = require('path');
 const PORT = 5000;
 const app = express();
@@ -27,10 +28,25 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-//routes
-app.get('/', (req, res) => {
-		res.send('Homepage');
+//View All Posts
+app.get('/posts', async (req, res) => {
+		const posts = await Post.find({});
+		// console.log(posts);
+		res.render('posts/index', { posts })
 });
+
+//Create new post
+app.get('/posts/new', (req, res) => {
+		res.render('posts/new');
+})
+
+app.post('/posts', async (req, res) => {
+		const newPost = new Post(req.body);
+		await newPost.save();
+		res.redirect('/posts');
+})
+
+
 
 app.listen(PORT, () => {
 		console.log(`Server listening on port ${PORT}`);
