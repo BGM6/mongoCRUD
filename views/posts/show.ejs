@@ -47,6 +47,8 @@
 
 </head>
 <body>
+
+<h4><a href="/posts">Back to all post</a></h4>
 <div style="text-align: center">
 <h3><%=post.username%></h3>
 <p><%=post.title%></p>
@@ -54,7 +56,11 @@
 <textarea name="postText" id="postText" cols="40" rows="5">
     <%=post.text%>
 </textarea>
+    <!--Delete form-->
+    <form action="/posts/<%=post._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </div>
-<a href="/posts">Back to all post</a>
+
 </body>
 </html>
