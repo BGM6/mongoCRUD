@@ -43,25 +43,18 @@
         }
 
     </style>
-    <title>New Post</title>
+    <title><%=post.title%>></title>
+
 </head>
 <body>
-<h1 style="text-align: center">Create New Post</h1>
-<form style="text-align: center" action="/posts" method="POST">
-    <label for="username">Username</label>
-    <br>
-    <input type="text" name="username" id="username" placeholder="username">
-    <br>
-    <label for="title">Title</label>
-    <br>
-    <input type="text" name="title" id="title" placeholder="title">
-    <br>
-    <label for="text">Post Body</label>
-    <br>
-    <textarea name="text" id="text" cols="30" rows="5"></textarea>
-    <br>
-    <button style="cursor: pointer">Submit</button>
-</form>
-<a href="/posts"sss>Back to all post</a>
+<div style="text-align: center">
+<h3><%=post.username%></h3>
+<p><%=post.title%></p>
+<label for="postText"></label>
+<textarea name="postText" id="postText" cols="40" rows="5">
+    <%=post.text%>
+</textarea>
+</div>
+<a href="/posts">Back to all post</a>
 </body>
 </html>

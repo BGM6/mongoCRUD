@@ -39,14 +39,18 @@ app.get('/posts', async (req, res) => {
 app.get('/posts/new', (req, res) => {
 		res.render('posts/new');
 })
-
 app.post('/posts', async (req, res) => {
 		const newPost = new Post(req.body);
 		await newPost.save();
 		res.redirect('/posts');
 })
 
-
+//show page
+app.get('/posts/:id', async (req, res) => {
+		const {id} = req.params;
+		const post = await Post.findById(id);
+		res.render('posts/show', { post })
+})
 
 app.listen(PORT, () => {
 		console.log(`Server listening on port ${PORT}`);
