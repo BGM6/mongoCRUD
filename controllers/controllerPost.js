@@ -34,10 +34,10 @@ module.exports.remove = async (req, res) => {
 		const {id} = req.params;
 		await Post.findByIdAndDelete(id);
 		res.redirect('/posts')
-}
+};
 
 module.exports.renderEdit = async (req, res) => {
 		const { id } = req.params;
 		const post = await Post.findById(id);
 		res.render('posts/edit', { post })
-}
+};
