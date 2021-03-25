@@ -1,6 +1,8 @@
+const express = require('express')
 const Post = require('../models/post');
+const User = require('../models/user');
 
-module.exports.viewPosts =  async (req, res) => {
+module.exports.viewPosts = async (req, res) => {
 		const posts = await Post.find({});
 		res.render('posts/index', { posts })
 };
@@ -8,11 +10,12 @@ module.exports.viewPosts =  async (req, res) => {
 module.exports.createNewPost = async (req, res) => {
 		const newPost = new Post(req.body);
 		await newPost.save();
-		res.redirect('/posts');
+		res.redirect('/posts' );
 };
 
-module.exports.renderNewPost = (req, res) => {
-		res.render('posts/new')};
+module.exports.renderNewPost = async (req, res) => {
+		res.render('posts/new')
+};
 
 module.exports.showPage = async (req, res) => {
 		const {id} = req.params;
