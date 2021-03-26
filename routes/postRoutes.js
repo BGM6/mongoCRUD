@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync')
-const post = require('../controllers/controllerPost')
+const post = require('../controllers/postController')
 
 router.route('/')
 .get(catchAsync(post.viewPosts))

@@ -54,41 +54,42 @@ const requireLogin = (req, res, next) => {
 }
 
 //Register
-app.get('/register', (req, res) => {
-		res.render('auth/register');
-})
+// app.get('/register', (req, res) => {
+// 		res.render('auth/register');
+// })
 
-app.post('/register', async (req, res) => {
-		const { password, username } = req.body;
-		const hash = await bcrypt.hash(password, 12);
-		const user = new User({
-				username,
-				password: hash
-		})
-		await user.save();
-		req.session.user_id = user._id;
-		res.redirect('/posts');
-})
+// app.post('/register', async (req, res) => {
+// 		const { password, username } = req.body;
+// 		const hash = await bcrypt.hash(password, 12);
+// 		const user = new User({
+// 				username,
+// 				password: hash
+// 		})
+// 		await user.save();
+// 		req.session.user_id = user._id;
+// 		res.redirect('/posts');
+// })
 
 //Login
-app.get('/login', (req, res) => {
-		res.render('auth/login');
-})
+// app.get('/login', (req, res) => {
+// 		res.render('auth/login');
+// })
 
-app.post('/login', async (req, res) => {
-		const { username, password } = req.body;
-		const user = await User.findOne({username});
-		const validatePassword = await bcrypt.compare(password, user.password);
-		if(validatePassword) {
-				req.session.user_id = user._id;
-				res.redirect('/posts');
-		} else {
-				res.redirect('/login');
-		}
-})
+// app.post('/login', async (req, res) => {
+// 		const { username, password } = req.body;
+// 		const user = await User.findOne({username});
+// 		const validatePassword = await bcrypt.compare(password, user.password);
+// 		if(validatePassword) {
+// 				req.session.user_id = user._id;
+// 				res.redirect('/posts');
+// 		} else {
+// 				res.redirect('/login');
+// 		}
+// })
 
-//express router
+//Post Routes
 app.use('/posts', requireLogin, postRoutes)
+//Auth Routes
 
 
 //Error catching routes
